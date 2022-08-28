@@ -20,13 +20,13 @@ echo p
 echo 3
 echo 3147776
 echo \n
-) | fdisk ${dsk}
-mkfs.ext4 ${dsk}3
-mkswap ${dsk}2
-mkfs.fat -F 32 ${dsk}1
-mount ${dsk}3 /mnt
-mount --mkdir ${dsk}1 /mnt/boot
-swapon ${dsk}2
+) | fdisk $dsk
+mkfs.ext4 $dsk3
+mkswap $dsk2
+mkfs.fat -F 32 $dsk1
+mount $dsk3 /mnt
+mount --mkdir $dsk1 /mnt/boot
+swapon $dsk2
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 (
