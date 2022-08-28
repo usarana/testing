@@ -1,28 +1,16 @@
 #!/bin/zsh
 timedatectl set-ntp true
-(
-echo n
-echo p
-echo 1
-echo 2048
-echo +512M
-echo n
-echo p
-echo 2
-echo 1050624
-echo +1G
-echo n
-echo p
-echo 3
-echo 3147776
-echo \n
-) | fdisk /dev/sda
-mkfs.ext4 /dev/sda3
-mkswap /dev/sda2
-mkfs.fat -F 32 /dev/sda1
-mount /dev/sda3 /mnt
-mount --mkdir /dev/sda1 /mnt/boot
-swapon /dev/sda2
+echo ", 512M" > temp.txt
+echo ", 1G" >> temp.txt
+echo ", ," >> temp.txt
+sfdisk /deb/sdb --force << temp.txt
+rm temp.txt
+mkfs.ext4 /dev/sdb3
+mkswap /dev/sdb2
+mkfs.fat -F 32 /dev/sdb1
+mount /dev/sdb3 /mnt
+mount --mkdir /dev/sdb1 /mnt/boot
+swapon /dev/sdb2
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 (
