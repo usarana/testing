@@ -20,13 +20,13 @@ echo p
 echo 3
 echo 3147776
 echo \n
-) | fdisk $dsk
-mkfs.ext4 $dsk3
-mkswap $dsk2
-mkfs.fat -F 32 $dsk1
-mount $dsk3 /mnt
-mount --mkdir $dsk1 /mnt/boot
-swapon $dsk2
+) | fdisk /dev/sda
+mkfs.ext4 /dev/sda3
+mkswap /dev/sda2
+mkfs.fat -F 32 /dev/sda1
+mount /dev/sda3 /mnt
+mount --mkdir /dev/sda1 /mnt/boot
+swapon /dev/sda2
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 (
@@ -34,9 +34,9 @@ ln -sf /usr/share/zoneinfo/Europe/Sofia /etc/localtime
 hwclock --systohc
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo "$ht" > /etc/hostname
+echo "arch" > /etc/hostname
 mkinitcpio -P
-echo "$pass" | passwd
+passwd
 grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
