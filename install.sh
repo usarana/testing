@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 read "ht?Enter hostname "
 read "dsk?Enter disk "
 read "pass?Enter root password "
