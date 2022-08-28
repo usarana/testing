@@ -42,4 +42,3 @@ grub-mkconfig -o /boot/grub/grub.cfg
 exit
 ) | arch-chroot /mnt
 umount -R /mnt
-reboot
