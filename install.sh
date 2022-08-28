@@ -1,7 +1,7 @@
 #!/bin/bash
-read -p "Enter hostname: " ht
-read -p "Enter disk: " dsk
-read -p "Enter root password: " pass
+read "ht?Enter hostname "
+read "dsk?Enter disk "
+read "pass?Enter root password "
 ip link
 timedatectl set-ntp true
 (
